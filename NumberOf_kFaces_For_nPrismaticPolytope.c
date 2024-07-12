@@ -4,7 +4,7 @@
 #include <math.h>
 
 // Function Prototypes
-int NumberOf_kFaces_For_nPrismaticPolytope(int* m_b_ptr, int* n_d_ptr, int* k_f_ptr);
+unsigned long long int NumberOf_kFaces_For_nPrismaticPolytope(int* m_b_ptr, int* n_d_ptr, int* k_f_ptr);
 unsigned long long int  ComputeCoeff(int p,int q);
 unsigned long long int pCq(int p, int q);
 unsigned long long int factorial(int num);
@@ -13,10 +13,12 @@ unsigned long long int factorial(int num);
 void main()
 {
     // Declare Variables
-    int n_dimension, k_faces, m_base = 3, result;
+    int n_dimension, k_faces, m_base = 3;
+    unsigned long long int result;
 
     while(1)
     {
+        printf("\n ------- Prismatic Polytopes Parameter Calculator (P3C) ------- \n");
         // Take User Inputs.
         printf("\n Enter a number 'm' of the m-sided base 2D Polygon: \n");
         scanf("%d", &m_base);
@@ -28,7 +30,8 @@ void main()
         // Make sure m >=3 and n > k.
         if((m_base < 3) || (n_dimension < k_faces))
         {
-            printf("\n INVALID INPUT \n");
+            result = 0;
+            printf("\n The number of %d-faces for a Prismatic %d-dimensional Polytope with a %d-sided base 2D polygon is: \n%d \n\n", k_faces, n_dimension, m_base, result);
         }
         else
         {
@@ -40,7 +43,7 @@ void main()
     
 }
 
-int NumberOf_kFaces_For_nPrismaticPolytope(int* m_b_ptr, int* n_d_ptr, int* k_f_ptr)
+unsigned long long int NumberOf_kFaces_For_nPrismaticPolytope(int* m_b_ptr, int* n_d_ptr, int* k_f_ptr)
 {
     // Dereferencing the pointers.
     int n_dimension = *n_d_ptr, k_faces = *k_f_ptr, m_base = *m_b_ptr;
